@@ -1,4 +1,8 @@
 # RedmondXP-Color-Customizer-for-XFCE
+
+<img width="2530" height="1308" alt="image" src="https://github.com/user-attachments/assets/1e6ddc2b-3237-435b-ae73-ef766468cdbd" />
+
+
 This is a script that was built out of a desire to use the RedmondXP theme, but replacing the WindowsXP blue with custom colors based off my background image instead. 
 
 # **Setup**
