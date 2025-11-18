@@ -1,9 +1,9 @@
 # RedmondXP-Color-Customizer-for-XFCE
 This is a script that was built out of a desire to use the RedmondXP theme, but replacing the WindowsXP blue with custom colors based off my background image instead. 
 
-# Setup
+# **Setup**
 
-### Installation
+### **Installation**
 Open a terminal in your desired install directory and clone the repo via: 
 
 ```
@@ -15,11 +15,11 @@ Open a terminal in the repo folder (RedmondXP-Color-Customizer-for-XFCE-main/) a
 sudo chmod +x redmond_color_converter.sh
 ```
 
-### Install Dependencies
+### **Install Dependencies**
 
-Python3: You can get this from your sofware manager or the repos
+**Python3**: You can get this from your sofware manager or the repos
 
-Image Magick: I have included a script to install Image Magick that comes from this [repo](https://github.com/SoftCreatR/imei/blob/main/). Open a terminal in the repo folder (RedmondXP-Color-Customizer-for-XFCE-main/) and give it execute permissions via: 
+**Image Magick**: I have included a script to install Image Magick that comes from this [repo](https://github.com/SoftCreatR/imei/blob/main/). Open a terminal in the repo folder (RedmondXP-Color-Customizer-for-XFCE-main/) and give it execute permissions via: 
 
 ```
 sudo chmod +x magick_install.sh
@@ -38,13 +38,27 @@ sudo chmod +x magick
 ```
 Then copy it into your /bin folder. 
 
-# How it works
+# **Usage**
+
+Place your desired background images in RedmondXP-Color-Customizer-for-XFCE-main/backgrounds/
+
+Run the script: 
+
+```
+./redmond_color_converter.sh
+```
+
+The script will guide you through the rest of the process. The setup question at the start just creates a virtual enviorment `venv` for the python script to run out of.
+
+# **Examples**
+
+# **How it works**
 
 This will get a bit technical, so bear with me. 
 
 The script consists of 3 main components
 
-## Finding the correct HSL for Image Magick
+## **Finding the correct HSL for Image Magick**
 It starts by taking a primary color (either chosen through the integrated python-based color extractor based off your chosen background image, or inputed by the user) and converting to HSL format. HSL is three components Hue, Saturation, and Lightness or in layman's terms base color, how much color, and how bright the color is (if you want to get really techincal check out the [wiki](https://en.wikipedia.org/wiki/HSL_and_HSV) )  
 
 Image Magick does not take raw HSL colors for it's '-modulate' option so finding a color match is a bit tricky. 
@@ -69,7 +83,7 @@ I then used GIMP to create a small image with just that averaged color (called m
 
 I took this average and converted it to HSL colors and used this tool [here](https://r0d3r1ck0rd0n3z.github.io/ImageMagick-Modulate-Calculator/) with the H value of msblue.png. Using the math in the java script I was able to create a list of what custom H value in Image Magick will make the base color (from msblue.png) into the desired custom color. 
 
-### The brute force method
+### **The brute force method**
 
 Now here is where it gets a bit stupid. 
 
@@ -144,7 +158,7 @@ Once the loop is over we store the value of testS in a varriable to use later.
 We do this same thing again but looking for the lightness value until we have a set of L,S, and H values that will cause the desired color shift with Image Magick. 
 
 
-##Image Conversion
+## **Image Conversion**
 
 Now that we have our target colors we just run our corrected magick command on all of the images in recolor-target, i.e. all of the blue things.
 
@@ -156,6 +170,7 @@ cp RedmondXP/gtk-3.0/assets/sidebar-backdrop.png custom-themes/
 $ThemeName/gtk-3.0/assets/sidebar-backdrop.png
 magick custom-themes/$ThemeName/gtk-3.0/assets/sidebar-backdrop.png -set option:modulate:colorspace hsl -modulate $convertedLb,$convertedSb,$convertedH2 custom-themes/$ThemeName/gtk-3.0/assets/sidebar-backdrop.png  
 ```
+
 I also take tray.png (the far right side of your pannel in XFCE) and lower the lightness value of it by ten. I found it was too samey and the slight adjustment after the color conversion makes it feel more seperated. 
 
 Line 492:
@@ -172,5 +187,11 @@ So RedmondXP uses several CSS documents to assign the color of various elements 
 I also edit the file themerc in xfce/ since it determines the color of test in your title bar. 
 
 
+# Credits
+
+**RedmondXP**:[matthewmx86](https://github.com/matthewmx86/RedmondXP)
+**color_extractor**: [Robinoscarsson](https://github.com/robinoscarsson/color_extractor)  
+**the numbers for the hue conversion**: [r0d3r1ck0rd0n3z](https://github.com/r0d3r1ck0rd0n3z/ImageMagick-Modulate-Calculator/tree/master)
+**Hex to HSL Coversion**: [z3rOR0ne](https://codeberg.org/z3rOR0ne/dyetide)
 
 
