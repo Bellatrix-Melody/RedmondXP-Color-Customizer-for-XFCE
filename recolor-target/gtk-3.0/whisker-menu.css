@@ -1,0 +1,287 @@
+/*  Add menu border */
+#whiskermenu-window {
+  padding: 0px;
+  padding-top: 3px;
+  border-radius: 4px 4px 0 0;
+  background-color: @menubg_avg;
+  background-color: transparent;
+  background-image: url("assets/menu-top.png"),url("assets/menu-bottom.png"),url("assets/menubg.png");
+  background-position: 0 0, 0 calc(100%), 0 68px;
+  background-size: 100% 65px, 100% 48px, 100% 3px;
+  background-repeat: no-repeat, no-repeat, repeat;
+  box-shadow: 0 -3px @light_shadow; }
+
+/*  border-image: linear-gradient(to bottom, #7faff2, #145ace 4%, #639cf2);*/ 
+
+/*This is the weird line of stay pixels*/
+#whiskermenu-window .title-area {
+  min-height: 55px;
+  color: @selected_fg_color;
+
+/*This is the text shadow on the title bar, if you want to add it back replace @fg_color with a different hex code in THIS CODE not in gtk.css*/
+  /*text-shadow: 2px 2px @fg_color;*/
+
+  border-bottom: 1px solid @menubg_avg; }
+
+#whiskermenu-window .title-area  button:hover {
+  border: 1px solid transparent;
+  box-shadow: none;
+  background-color: @menubg_avg25;
+}
+
+/*Change middle of gradient to primary color or a highlight color if you like*/
+.contents {
+  border-radius: 3px 3px 0 0;
+  border: 1px  @whisker_menu_gradient solid;
+  margin-right: -5px;
+  margin-left: -5px;
+  padding-top: 2px;
+  background-image: linear-gradient(to right, transparent, @whisker_menu_gradient, transparent);
+  background-size: 100% 2px;
+  background-repeat: no-repeat;
+  background-color: #fff; }
+
+#whiskermenu-window border {
+  border-color: transparent;
+  border-image: url("assets/border.png");
+  border-image-slice: 5 5 5 5; 
+  border-top: 0px solid;
+  border-right: 2px solid;
+  border-left: 1px solid;
+  border-bottom: 1px solid;}
+
+
+/* Menu scroll windows */
+#whiskermenu-window scrolledwindow,
+#whiskermenu-window scrolledwindow:first-child {
+  background-color: #fff;
+  border: 0px transparent;
+}
+   
+/* Categories next to panel button option */
+
+/*This is your left pane color!!*/
+#whiskermenu-window grid > scrolledwindow:first-child {
+  margin-left: 0px;
+  font-weight: bold;
+  background-color: shade(@custom_sidebar_color,1.2);
+  border: 0px transparent;
+  color: @primary_text_color;
+  border-right: 1px solid @custom_secondary;
+}
+
+#whiskermenu-window scrolledwindow:nth-child(2) {
+  margin-left: 0px;
+  font-weight: bold;
+  background-color: @custom_secondary;
+  color: @text_color;
+  border: 0px transparent;
+  border-left: 1px solid @custom_secondary;
+}
+
+#whiskermenu-button {
+   color: transparent;
+   font-weight: bold;
+   background-size: 100% 100%;
+   margin: 0px;
+   border: none;
+   border-radius: 0;
+   min-width: 105px;
+   background-image: url("assets/start.png"); }
+
+#whiskermenu-button > box image {
+   margin-left: -40px; }
+
+#whiskermenu-button:hover {
+  font-weight: bold;
+  background-size: 100% 100%;
+   margin: 0px;
+   border: none;
+   box-shadow: none;
+   border-radius: 0;
+   min-width: 105px;
+   background-image: url("assets/start_hover.png"); }
+
+
+/* Change active button to checkered button */
+#whiskermenu-button:checked, #whiskermenu-button:active {
+  font-weight: bold;
+  background-size: 100% 100%;
+   margin: 0px;
+   border: none;
+   box-shadow: none;
+   border-radius: 0;
+   min-width: 105px;
+   background-image: url("assets/start_active.png"); }
+
+#whiskermenu-button box > image {
+  background-image: none;
+  margin-top: -100px;
+  color: transparent; }
+
+#whiskermenu-window button {
+  border-radius: 0; }
+
+#whiskermenu-window box > scrolledwindow button:hover,
+#whiskermenu-window box > scrolledwindow button:checked  {
+  box-shadow: none;
+  border: 1px solid transparent;
+  background-image: none;
+  background-color: @selected_bg_color;
+  color: @selected_fg_color; }
+
+/* Style menu window logout buttons */
+#whiskermenu-window .commands-area > .command-button {
+  border-radius: 5px;
+  border: 1px solid alpha(#fff, 0.0);
+  box-shadow: none;
+  padding: 4px;
+  background-color: transparent;
+}
+
+#whiskermenu-window .title-area .commands-area > .command-button {
+  margin-left: 4px;
+}
+
+/* Hide default icons */
+#whiskermenu-window .commands-area > .command-button > image {
+  opacity: 0.0;
+}
+
+
+#whiskermenu-window .title-area .commands-area > .command-button:checked,
+#whiskermenu-window .title-area .commands-area > .command-button:active {
+  background: transparent;
+  background-color: #000;
+  opacity: 0.2;
+  border: 1px solid transparent;
+}
+
+#whiskermenu-window .title-area .commands-area > .command-button:hover {
+  background: transparent;
+  background-color: #efefef;
+  opacity: 0.1;
+  border: 1px solid transparent;
+}
+
+#whiskermenu-window :not(.title-area) > .commands-area:last-child > .command-button:nth-last-child(1),
+#whiskermenu-window :not(.title-area) > .commands-area:first-child > .command-button:nth-last-child(2) {
+  min-width: 70px;
+  background-image: url("assets/poweroff.png"),url("assets/poweroff_text.png");
+  background-size: 30px 30px,35px 24px;
+  background-repeat: no-repeat,no-repeat;
+  background-position: left, 34px center; }
+
+#whiskermenu-window :not(.title-area) > .commands-area:last-child > .command-button:nth-last-child(2),
+#whiskermenu-window :not(.title-area) > .commands-area:first-child > .command-button:nth-last-child(3) { 
+  min-width: 70px;
+  background-image: url("assets/lock.png"),url("assets/lock_text.png");
+  background-size: 30px 30px,37px 24px;
+  background-repeat: no-repeat,no-repeat;
+  background-position: left, 35px center; }
+
+#whiskermenu-window :not(.title-area) > .commands-area:last-child > .command-button:nth-last-child(1):hover,
+#whiskermenu-window :not(.title-area) > .commands-area:first-child > .command-button:nth-last-child(2):hover {
+  /*border-radius: 2px;
+  background-color: rgba(255, 255, 2555, 0.2);*/
+  min-width: 70px;
+  background-image: url("assets/poweroff_hover.png"),url("assets/poweroff_text.png");
+  background-size: 30px 30px,35px 24px;
+  background-repeat: no-repeat,no-repeat;
+  background-position: left, 34px center; }
+  
+#whiskermenu-window :not(.title-area) > .commands-area:last-child > .command-button:nth-last-child(2):hover,
+#whiskermenu-window :not(.title-area) > .commands-area:first-child > .command-button:nth-last-child(3):hover { 
+  /*border-radius: 2px;
+  background-color: rgba(255, 255, 2555, 0.2);*/
+  min-width: 70px;
+  background-image: url("assets/lock_hover.png"),url("assets/lock_text.png");
+  background-size: 30px 30px,37px 24px;
+  background-repeat: no-repeat,no-repeat;
+  background-position: left, 35px center; }
+
+#whiskermenu-window .title-area .commands-area > .command-button:nth-last-child(4),
+#whiskermenu-window :not(.title-area) .commands-area > .command-button:nth-last-child(3) {
+  border: 1px solid transparent;
+  background-color: transparent;
+  box-shadow: none;
+}
+
+#whiskermenu-window :not(.title-area) .commands-area > .command-button:checked,
+#whiskermenu-window :not(.title-area) .commands-area > .command-button:active {
+  border-radius: 2px;
+  background-color: rgba(255, 255, 2555, 0.0);
+}
+
+/* No consitant order */
+#whiskermenu-window .title-area .commands-area {
+  background-image: url("assets/title-area-buttons.png");
+  background-size: 118px 62px;
+  background-position: center;
+}
+
+#whiskermenu-window .title-area .command-button {
+  margin-top: 13px;
+  margin-bottom: 13px;
+}
+
+/* Category buttons */
+#whiskermenu-window viewport > box button {
+  padding: 4px;
+  background: transparent;
+  color: @custom_text_color;
+  border: none;
+  box-shadow: none;
+}
+
+/* Category button hover */
+#whiskermenu-window viewport > box button:hover {
+  border-radius: 2px;
+  background-color: @selected_bg_color;
+  color: @selected_fg_color;
+}
+
+
+/* Style menu separators */
+
+
+/*Change middle of gradient to primary color or a highlight color if you like*/
+
+#whiskermenu-window scrolledwindow seperator {
+  min-height: 2px;
+  background-image: linear-gradient(to right, #fff, #e6e6e6, #fff);
+}
+
+#whiskermenu-window scrolledwindow:nth-child(2) separator {
+  min-height: 2px;
+  background-image: linear-gradient(to right, @custom_secondary, @custom_secondary, @custom_secondary);
+ }
+
+ /*
+#whiskermenu-window > frame > stack > box > box:first-child :last-child {
+  color: transparent; }
+*/
+/* Profile picture */
+#whiskermenu-window .title-area:first-child :first-child:not(.flat) image {
+  margin-top: 3px;
+  border-radius: 5px;
+  background-image: linear-gradient(#c0c0c0, #505050 );
+  padding: 2px;
+  min-width: 48px;
+  min-height: 48px;
+  box-shadow: 1px 1px 2px shade(@selected_bg_color, 0.3),
+   -1px -1px shade(@selected_bg_color, 1.3);
+  border: 2px solid #eee; }
+
+/*This is your search bar color*/
+#whiskermenu-window entry {
+  background-color: rgba(255, 255, 2555, 0.6);
+  border: 1px solid @selected_bg_color;
+  box-shadow: 0px 0px 2px shade(@selected_fg_color, 0.4) inset;
+  font-weight: bold;
+  margin-bottom: 0px;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  color: shade(@selected_fg_color, 0.2);
+  border-radius: 1px;
+}
