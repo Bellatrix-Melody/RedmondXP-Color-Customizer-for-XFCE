@@ -4,7 +4,7 @@
 @define-color custom_primary #PRIMRY;
 @define-color custom_secondary #SECNDR;
 @define-color whisker_menu_gradient @custom_secondary;
-
+@define-color custom_text_color #TXTCLR;
 @define-color text_color #000000;
 @define-color custom_sidebar_color @custom_primary;
 @define-color custom_searchbar_color @custom_secondary;
@@ -25,7 +25,6 @@
 @define-color fg_color #000000;
 @define-color base_color #FFFFFF;
 @define-color secondary_text_color @selected_text_color;
-@define-color custom_text_color #TXTCLR;
 @define-color light_shadow #fdfaf3;
 @define-color medium_shadow #d8d3bd;
 @define-color dark_shadow #b7b197;
