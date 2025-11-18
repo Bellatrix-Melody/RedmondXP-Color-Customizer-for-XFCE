@@ -77,6 +77,9 @@ A standalone version of the converter used in the main script that lets you star
 
 # **Examples**
 
+<img width="2530" height="1308" alt="Screenshot_2025-11-18_12-25-38" src="https://github.com/user-attachments/assets/8d4d06c7-d8a3-4849-a066-b9d70d67a0d0" />
+
+
 # **How it works**
 
 This will get a bit technical, so bear with me. 
