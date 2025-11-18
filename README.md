@@ -63,6 +63,14 @@ Change the text on the clock widget in the XFCE pannel. However you can do this 
 
 In this example the custom text color is set to black.
 
+## Tools
+
+This repo comes with some other handy scripts for you to use or not, up to you. 
+
+**Magick_HEX_to_HSL_converter**
+
+A standalone version of the converter used in the main script that lets you start with a different base color. Useful for if you need to do batch processing of color conversion like this script does. For details on how to use this and how it works see the "How it works" section in this readme.
+
 # **Examples**
 
 # **How it works**
