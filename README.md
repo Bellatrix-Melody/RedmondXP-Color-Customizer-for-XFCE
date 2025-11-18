@@ -72,7 +72,11 @@ When using a custom font on the clock in the XFCE pannel the text color does not
 In this example the custom text color is set to black.
 
 ## Included
+**Fonts**
 
+I include a pack of truetype fonts that make things more XP like which I got from [rozniak's](https://github.com/rozniak/xfce-winxp-tc) winxp total conversion. Just drop them wherever your distro keeps your true type fonts and change the fonts. 
+
+### Tools
 This repo comes with some other handy scripts beyond the color converter for you to use or not, up to you. They are in the tools folder
 
 **Magick_HEX_to_HSL_converter**
@@ -81,11 +85,31 @@ A standalone version of the converter used in the main script that lets you star
 
 **Custom Icon Swapper**
 
-changeme
+A pretty simple icon swapper using [B00merang's](https://github.com/B00merang-Artwork/Windows-XP) XP icon pack as a base. You need to first make the base icons you want to use 128x128 using a program like [GIMP](https://www.gimp.org/downloads/) or the image editor of your choice. 
+
+**If you do not make the images you want to use as custom icons 128x128 you will have icon size issues!!**
+
+All you need to do is replace the current files in custom-icons using the follow format:
+
+**Your custom "My Computer icon"**
+
+computer.png
+
+**Your custom "My Documents icon"**
+
+documents.png
+
+**Your custom "Network icon"**
+
+network.png
+
+**Your custom "Tash icon"**
+
+trash.png
 
 # **Examples**
 
-A light bakground with color converted minimize and maximize buttons
+A light bakground with color converted minimize and maximize buttons 
 
 <img width="2530" height="1308" alt="image" src="https://github.com/user-attachments/assets/009aae25-ff54-41f6-8e9f-3f60556f0036" />
 
@@ -217,10 +241,10 @@ I also take tray.png (the far right side of your pannel in XFCE) and lower the l
 
 Line 492:
    ```
-changeme
+magick "$tmp" -set option:modulate:colorspace hsl -modulate 100,0,100 "$tmp"
 ```
  
-I also added an option to make the minimize and maximize buttons greyscale becasue I found they would get lost in darker color schemes. 
+I also added an option to make the minimize and maximize buttons greyscale becasue I found they would get lost in darker color schemes. I'm just taking the base RedmondXP images and completely desaturating them, a simple grayscale conversion produced worse results
 
 ##Editing the CSS
 
@@ -238,5 +262,6 @@ I also edit the file themerc in xfce/ since it determines the color of test in y
 **the numbers for the hue conversion**: [r0d3r1ck0rd0n3z](https://github.com/r0d3r1ck0rd0n3z/ImageMagick-Modulate-Calculator/tree/master)
 
 **Hex to HSL Coversion**: [z3rOR0ne](https://codeberg.org/z3rOR0ne/dyetide)
+
 
 
