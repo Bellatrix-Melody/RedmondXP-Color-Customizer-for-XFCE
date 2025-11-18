@@ -54,9 +54,13 @@ Run the script:
 
 The script will guide you through the rest of the process. The setup question at the start just creates a virtual enviorment `venv` for the python script to run out of.
 
-**What this script cannot do**
+**For the greyscale minimize and maximize button question**
 
-Change the text on the clock widget in the XFCE pannel. However you can do this manually by going to the clock settings and making a custom format using the follow code:
+I think saying yes is the safest bet here, because, depending on the color, they can either be totally blown out or invisible. 
+
+**Known Bugs**
+
+On my install of Linux Mint the text on the clock widget in the XFCE pannel doesn't update, but it does on a fresh install VM. If you run into this you can change it manually by going to the clock settings and making a custom format using the follow code:
 
 <img width="433" height="167" alt="image" src="https://github.com/user-attachments/assets/6d9c04f3-5b15-4e42-b50d-8f9904fceb53" />
 
@@ -67,13 +71,17 @@ Change the text on the clock widget in the XFCE pannel. However you can do this 
 
 In this example the custom text color is set to black.
 
-## Tools
+## Included
 
-This repo comes with some other handy scripts for you to use or not, up to you. 
+This repo comes with some other handy scripts beyond the color converter for you to use or not, up to you. They are in the tools folder
 
 **Magick_HEX_to_HSL_converter**
 
 A standalone version of the converter used in the main script that lets you start with a different base color. Useful for if you need to do batch processing of color conversion like this script does. For details on how to use this and how it works see the "How it works" section in this readme.
+
+**Custom Icon Swapper**
+
+changeme
 
 # **Examples**
 
