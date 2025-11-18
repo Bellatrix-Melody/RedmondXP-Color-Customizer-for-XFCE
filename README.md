@@ -18,6 +18,10 @@ sudo chmod +x redmond_color_converter.sh
 ### **Install Dependencies**
 
 **Python3**: You can get this from your sofware manager or the repos
+```
+sudo apt install python3
+sudo apt install python3-venv
+```
 
 **Image Magick**: I have included a script to install Image Magick that comes from this [repo](https://github.com/SoftCreatR/imei/blob/main/). Open a terminal in the repo folder (RedmondXP-Color-Customizer-for-XFCE-main/) and give it execute permissions via: 
 
