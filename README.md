@@ -217,7 +217,7 @@ I also take tray.png (the far right side of your pannel in XFCE) and lower the l
 
 Line 492:
    ```
-magick custom-themes/$ThemeName/gtk-3.0/assets/tray.png -set option:modulate:colorspace hsl -modulate 90,100,100 custom-themes/$ThemeName/gtk-3.0/assets/tray.png
+changeme
 ```
  
 I also added an option to make the minimize and maximize buttons greyscale becasue I found they would get lost in darker color schemes. 
