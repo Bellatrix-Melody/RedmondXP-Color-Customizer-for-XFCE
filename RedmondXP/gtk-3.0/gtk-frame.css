@@ -1,0 +1,105 @@
+/* Frames and borders, frame and border hacks */
+
+ /* the small square between scrollbars!!! */
+/*
+scrolledwindow junction,
+scrolledwindow.frame junction {
+	background-image: none;
+	background-color: inherit;
+	border-style: none;
+	border-radius: 0;}*/
+	
+dialog .dialog-vbox scrolledwindow.frame > viewport.view.frame {
+    border: 1px solid @dark_shadow; }
+
+dialog scrolledwindow viewport .vertical expander .vertical, paned grid scrolledwindow {
+    background-color: @base_color;
+    border: 1px solid @dark_shadow; }
+
+stack box scrolledwindow, dialog .sidebar.frame {
+   border: 1px solid @dark_shadow; }
+
+scrolledwindow.frame, widget > scrolledwindow {
+   border: 1px solid shade(@selected_bg_color,0.8); }
+
+frame > border, .frame > border {
+   border: 1px solid @dark_shadow; }
+
+.frame.flat,
+frame > border.flat {
+    border-style: none; }
+
+/* Status bar border */
+
+statusbar {
+    margin-top: 0px;
+    padding: 1px;
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-right: -11px;
+    margin-left: -11px;
+    box-shadow: 1px 1px 2px shade(@dark_shadow,0.5) inset, -1px 0px 2px shade(@dark_shadow,0.5) inset;
+    border: none; }
+
+statusbar > frame > border {
+   border: 0px transparent;
+   box-shadow: none; }
+
+.sidebar .inline-toolbar, .sidebar statusbar {
+   background-color: @bg_color; }
+
+/* Styled frames */
+
+/* Terminal Emulator Frames */ 
+terminal-window notebook, VteTerminal, vte-terminal {
+   padding: 0px;
+   border: 0px;
+   border-radius: 0px; }
+
+#xfce4-terminal-notebook {
+   margin-top: 0px;
+   padding: 0px;
+   border: 0px;
+   border-radius: 0px; }
+
+scrolledwindow {
+   margin: 0; }
+
+list row box {
+   padding: 4px; }
+
+list row label {
+   padding-left: 6px; }
+
+.sidebar list, .caja-side-pane scrolledwindow, .thunar .shortcuts-pane,
+.nemo-window .sidebar scrolledwindow {
+  background-image: url("assets/sidebar-backdrop.png");
+   background-size: 100% 100%;
+   background-color: @bg_color;
+   border: none;
+   margin: 0; }
+ 
+.sidebar list, .caja-side-pane treeview, .thunar .shortcuts-pane treeview.view,
+.nemo-window .sidebar treeview.view {
+   color: @selected_fg_color; }
+
+.sidebar list row:hover, .caja-side-pane treeview.view:hover,
+.thunar .shortcuts-pane treeview:hover, .nemo-window .sidebar treeview.view:hover {
+   background-color: alpha(@light_shadow,0.2);
+   color: @selected_fg_color; }
+
+.sidebar list row:selected, .caja-side-pane treeview.view:selected,
+.thunar .shortcuts-pane treeview:checked {
+   background-color: unset;
+
+   background-color: alpha(@light_shadow,0.2);
+   color: @selected_fg_color; }
+
+.caja-side-pane {
+   margin-right: -3px; }
+
+.caja-side-pane treeview.view, .thunar .shortcuts-pane treeview.view,
+.nemo-window .sidebar treeview.view {
+   padding: 3px;
+   padding-left: 0px;
+   background-color: transparent; }
