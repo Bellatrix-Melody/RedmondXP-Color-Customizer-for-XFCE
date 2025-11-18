@@ -1,6 +1,42 @@
 # RedmondXP-Color-Customizer-for-XFCE
 This is a script that was built out of a desire to use the RedmondXP theme, but replacing the WindowsXP blue with custom colors based off my background image instead. 
 
+# Setup
+
+### Installation
+Open a terminal in your desired install directory and clone the repo via: 
+
+```
+git clone https://github.com/Bellatrix-Melody/RedmondXP-Color-Customizer-for-XFCE.git
+```
+Open a terminal in the repo folder (RedmondXP-Color-Customizer-for-XFCE-main/) and give the script executable permissions
+
+```
+sudo chmod +x redmond_color_converter.sh
+```
+
+### Install Dependencies
+
+Python3: You can get this from your sofware manager or the repos
+
+Image Magick: I have included a script to install Image Magick that comes from this [repo](https://github.com/SoftCreatR/imei/blob/main/). Open a terminal in the repo folder (RedmondXP-Color-Customizer-for-XFCE-main/) and give it execute permissions via: 
+
+```
+sudo chmod +x magick_install.sh
+```
+Then run it:
+
+```
+sudo ./magick_install.sh
+```
+If you'd rather get this directly from Image Magick and not sudo a script from a github then you can find the standalone executable at: [https://imagemagick.org/script/download.php](https://imagemagick.org/script/download.php)
+
+Open a terminal in the download folder and give it executable permissions
+
+```
+sudo chmod +x magick
+```
+Then copy it into your /bin folder. 
 
 # How it works
 
