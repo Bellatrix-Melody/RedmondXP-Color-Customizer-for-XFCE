@@ -527,8 +527,8 @@ echo "
 ########################################################################################
 "
 
-echo -e "${GREEN}Are you using a dark primary color?${NC}"
-echo -e "${BLUE} Enter answer: (y/n)"
+echo -e "${GREEN}Would you like to use greyscale minimize and maximize buttons?${NC}"
+echo -e "${BLUE} Enter answer: (y/n)${NC}"
 read darkprimary
 
 echo " 
