@@ -33,8 +33,13 @@ H_array=(
 )
 
 H_arrayR=(226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46)
+
 H_arrayL=(46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226)
 
+H_arrayR2=(202 203 204 205 206 207 208 209 210 211 212 213 214 215 216 217 218 219 220 221 222 223 224 225 226 227 228 229 230 231 232 233 234 235 236 237 238 239 240 241 242 243 244 245 246 247 248 249 250 251 252 253 254 255 256 257 258 259 260 261 262 263 264 265 266 267 268 269 270 271 272 273 274 275 276 277 278 279 280 281 282 283 284 285 286 287 288 289 290 291 292 293 294 295 296 297 298 299 300 301 302 303 304 305 306 307 308 309 310 311 312 313 314 315 316 317 318 319 320 321 322 323 324 325 326 327 328 329 330 331 332 333 334 335 336 337 338 339 340 341 342 343 344 345 346 347 348 349 350 351 352 353 354 355 356 357 358 359 360 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22
+)
+
+H_arrayL2=(22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95 96 97 98 99 100 101 102 103 104 105 106 107 108 109 110 111 112 113 114 115 116 117 118 119 120 121 122 123 124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139 140 141 142 143 144 145 146 147 148 149 150 151 152 153 154 155 156 157 158 159 160 161 162 163 164 165 166 167 168 169 170 171 172 173 174 175 176 177 178 179 180 181 182 183 184 185 186 187 188 189 190 191 192 193 194 195 196 197 198 199 200 201 202)
 #This converter function was taken from https://codeberg.org/z3rOR0ne/dyetide/src/branch/main/dyetide and edited to only convert and output the necessary HSL color needed for the rest of the script, so thanks z3rOR0ne!
 
 #converter helpers
@@ -55,7 +60,8 @@ find_min_max() {
     do
         if [[ "$(echo "$arg > $max" | bc -l)" -eq 1 ]]; then
             max=$arg
-        elif [[ "$(echo "$arg < $max" | bc -l)" -eq 1 ]]; then
+        fi
+        if [[ "$(echo "$arg < $min" | bc -l)" -eq 1 ]]; then
             min=$arg
         fi
     done
@@ -105,6 +111,44 @@ converter_primary(){
 
 if ((${#primary} == 6)); then
         ((r = 16#${primary:0:2}, g = 16#${primary:2:2}, b = 16#${primary:4:2}))
+
+else
+    error "$hex is not a recognized hex color code. ${#hex}"
+fi
+
+#The actual Conversion(tm)
+
+r=$(dec_to_float "$r")
+g=$(dec_to_float "$g")
+b=$(dec_to_float "$b")
+
+find_min_max "$r" "$g" "$b"
+
+# lightness is calculated as a percentage between max and min values of rgb
+l=$(printf "%.0f" "$(echo "scale=8; (($max + $min) / 2 * 100)" | bc -l)")
+
+# saturation is then calculated based off of $min/$max/$l values
+s=$(calculate_saturation "$min" "$max" "$l")
+
+# hue is calculated based off of $min/$max values
+h=$(calculate_hue "$min" "$max")
+
+#h is added 360 degrees if a negative value is passed
+if [[ $(echo "$h < 0" | bc -l) -eq 1 ]]; then
+    h=$(echo "scale=8; $h + 360" | bc -l)
+fi
+
+# prints final hsl(a) result
+
+echo "$h $s $l"
+
+}
+
+converter_secondary(){
+#checking color validity and converting to RGB
+
+if ((${#secondary} == 6)); then
+        ((r = 16#${secondary:0:2}, g = 16#${secondary:2:2}, b = 16#${secondary:4:2}))
 
 else
     error "$hex is not a recognized hex color code. ${#hex}"
@@ -322,9 +366,12 @@ ${RED}Note: the name is case sensitive${NC}"
         elif [[ $secondarychoice == 7 ]]; then
             secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '7p')
         elif [[ $secondarychoice == 8 ]]; then
-            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '8p')
+            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '8p')    
     fi
-
+  echo ""
+  echo -e "${GREEN}Would you like your tray(i.e where your clock typically goes) to be based off your secondary color? (asking to save on possible conversion time later)${NC}"
+  echo "Enter your choice (y/n)"
+  read traychoice
 elif [[ ${automation_choice} -eq 2 ]]; then
     echo " 
 ########################################################################################
@@ -352,7 +399,7 @@ ${RED}Note: the name is case sensitive${NC}"
     deactivate
     primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '1p')
     secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '2p')
-
+    traychoice=y
 
 elif [[ ${automation_choice} -eq 3 ]]; then
     echo " 
@@ -366,7 +413,9 @@ elif [[ ${automation_choice} -eq 3 ]]; then
     echo -e "${BLUE}Enter your desired seconday color as a hex code, minus the pound sign. Example: 99E2E3${NC} "
     read secondary
     echo ""
-    
+    echo -e "${GREEN}Would you like your tray(i.e where your clock typically goes) to be based off your secondary color? (asking to save on possible conversion time later)${NC}"
+    echo "Enter your choice (y/n)"
+    read traychoice
 fi
 
 # getting the files in place
@@ -383,11 +432,13 @@ echo -e "${BLUE}Finding the primary hex color in HSL and converting that to a fo
 
 #finding the primary hex color in HSL and converting that to a format that magick will accept
 read targetH targetS targetL < <(converter_primary)
-
-
+read targetH2 targetS2 targetL2 < <(converter_secondary)
+#echo $targetH2 $targetS2 $targetL2
 
 #comment this out if you want to use a custom starting hue
 convertedH=${H_array[$targetH]}
+#secondary color conversion
+
 
 hconverter(){
 targetindex=-1
@@ -404,14 +455,14 @@ for (( i=0; i<${#H_arrayR[@]}; i++ ));
         fi
     done
 
-for (( i=0; i<${#H_arrayR[@]}; i++ )); 
+for (( i=0; i<${#H_arrayL[@]}; i++ )); 
     do 
         if [[ ${H_arrayL[i]} -eq $targetH ]]; then
             targetindex=$(( i - 1 ))
-            targetindex=$(( targetindex * 1000 ))
+            targetindex=$(( targetindex * 1000000 ))
             targetindex=$(( targetindex / 180 ))
             targetindex=$(( targetindex * 100 ))
-            targetindex=$(( targetindex / 1000 ))
+            targetindex=$(( targetindex / 1000000 ))
             targetindex=$(( targetindex + 1 ))
         fi
     done
@@ -421,9 +472,42 @@ echo "$targetindex"
 
 }
 
+convertedHb=$(hconverter)
+
+hconverter2(){
+targetindex=-1
+
+for (( i=0; i<${#H_arrayR2[@]}; i++ )); 
+    do 
+        if [[ ${H_arrayR2[i]} -eq $targetH2 ]]; then
+            targetindex=$(( i - 1 ))
+            targetindex=$(( targetindex * 1000000 ))
+            targetindex=$(( targetindex / 180 ))
+            targetindex=$(( targetindex * 100 ))
+            targetindex=$(( targetindex / 1000000 ))
+            targetindex=$(( targetindex + 100 ))
+        fi
+    done
+
+for (( i=0; i<${#H_arrayL2[@]}; i++ )); 
+    do 
+        if [[ ${H_arrayL2[i]} -eq $targetH2 ]]; then
+            targetindex=$(( i - 1 ))
+            targetindex=$(( targetindex * 1000000 ))
+            targetindex=$(( targetindex / 180 ))
+            targetindex=$(( targetindex * 100 ))
+            targetindex=$(( targetindex / 1000000 ))
+            targetindex=$(( targetindex + 1 ))
+        fi
+    done
+
+echo "$targetindex"
 
 
-convertedH2=$(hconverter)
+}
+
+convertedH2=$(hconverter2)
+#echo "$convertedH2"
 
 
 #uncomment if you want to use a custom starting hue
@@ -434,63 +518,86 @@ convertedH2=$(hconverter)
 testS=0
 magickS=0
 
-until [[ $magickS -eq $targetS ]]
-do
-    magick colortest/msblue.png -set option:modulate:colorspace hsl -modulate 100,$testS,$convertedH colortest/msnotblue.png
+until (( magickS >= targetS - 1 && magickS <= targetS + 1 )); do
+    magick colortest/msblue.png -set option:modulate:colorspace hsl \
+        -modulate 100,$testS,$convertedH colortest/msnotblue.png
     msnotblue=$(magick colortest/msnotblue.png -scale 1x1! -format "%[hex:u.p]\n" info:)
     read magickH magickS magickL < <(converter_tester)
     ((testS++))
-      
 done
-
 convertedS=$testS
 
 testSb=0
 magickSb=0
 
-until [[ $magickSb -eq $targetS ]]
-do
-    magick colortest/sidebar-backdrop.png -set option:modulate:colorspace hsl -modulate 100,$testSb,$convertedH2 colortest/newsidebar-backdrop.png
+until (( magickSb >= targetS - 1 && magickSb <= targetS + 1 )); do
+    magick colortest/sidebar-backdrop.png -set option:modulate:colorspace hsl \
+        -modulate 100,$testSb,$convertedHb colortest/newsidebar-backdrop.png
     msnotblue=$(magick colortest/newsidebar-backdrop.png -scale 1x1! -format "%[hex:u.p]\n" info:)
     read magickHb magickSb magickLb < <(converter_tester)
     ((testSb++))
-     
 done
-
 convertedSb=$testSb
-
-
 
 testL=0
 magickL=0
 
-until [[ $magickL -eq $targetL ]]
-do
-    magick colortest/msblue.png -set option:modulate:colorspace hsl -modulate $testL,$convertedS,$convertedH2 colortest/msnotblue.png
+until (( magickL >= targetL - 1 && magickL <= targetL + 1 )); do
+    magick colortest/msblue.png -set option:modulate:colorspace hsl \
+        -modulate $testL,$convertedS,$convertedHb colortest/msnotblue.png
     msnotblue=$(magick colortest/msnotblue.png -scale 1x1! -format "%[hex:u.p]\n" info:)
     read magickH magickS magickL < <(converter_tester)
-    ((testL++))  
+    ((testL++))
 done
-
-
 convertedL=$testL
 
 testLb=0
 magickLb=0
 
-until [[ $magickLb -eq $targetL ]]
-do
-    magick colortest/sidebar-backdrop.png -set option:modulate:colorspace hsl -modulate $testLb,$converedSb,$convertedH2 colortest/newsidebar-backdrop.png
+until (( magickLb >= targetL - 1 && magickLb <= targetL + 1 )); do
+    magick colortest/sidebar-backdrop.png -set option:modulate:colorspace hsl \
+        -modulate $testLb,$convertedSb,$convertedHb colortest/newsidebar-backdrop.png
     msnotblue=$(magick colortest/newsidebar-backdrop.png -scale 1x1! -format "%[hex:u.p]\n" info:)
     read magickHb magickSb magickLb < <(converter_tester)
     ((testLb++))
-      
 done
-
 convertedLb=$testLb
 
+if [[ $traychoice == y ]]; then
+    testS2=0
+    magickS2=0
+
+    until (( magickS2 >= targetS2 - 1 && magickS2 <= targetS2 + 1 )); do
+        magick colortest/tray.png -set option:modulate:colorspace hsl \
+            -modulate 100,$testS2,$convertedH2 colortest/msnottray.png
+        msnotblue=$(magick colortest/msnottray.png -scale 1x1! -format "%[hex:u.p]\n" info:)
+        read magickH2 magickS2 magickL2 < <(converter_tester)
+        ((testS2++))
+    #echo "DEBUG S: TARGET $targetH2 $targetS2 $targetL2  Current: $magickH2 $magickS2 $magickL2"
+    done
+    convertedS2=$testS2
+
+    testL2=0
+    magickL2=0
+
+    until (( magickL2 >= targetL2 - 1 && magickL2 <= targetL2 + 1 )); do
+        magick colortest/tray.png -set option:modulate:colorspace hsl \
+            -modulate $testL2,$convertedS2,$convertedH2 colortest/msnottray.png
+        msnotblue=$(magick colortest/msnottray.png -scale 1x1! -format "%[hex:u.p]\n" info:)
+        read magickH2 magickS2 magickL2 < <(converter_tester)
+        ((testL2++))
+    #echo "DEBUG L: TARGET $targetH2 $targetS2 $targetL2  Current: $magickH2 $magickS2 $magickL2"
+    done
+    convertedL2=$testL2
+fi
+
+
 echo ""
-echo -e "${GREEN}Color match found!${NC}"
+echo -e "${GREEN}Color match(es) found!${NC}"
+testS=0
+magickS=0
+
+
 
 
 #shifting the images to the desire color
@@ -513,11 +620,18 @@ for f in custom-themes/$ThemeName/gtk-2.0/assets/*.png
         done
 
     cp RedmondXP/gtk-3.0/assets/sidebar-backdrop.png custom-themes/$ThemeName/gtk-3.0/assets/sidebar-backdrop.png
-       magick custom-themes/$ThemeName/gtk-3.0/assets/sidebar-backdrop.png -set option:modulate:colorspace hsl -modulate $convertedLb,$convertedSb,$convertedH2 custom-themes/$ThemeName/gtk-3.0/assets/sidebar-backdrop.png
+       magick custom-themes/$ThemeName/gtk-3.0/assets/sidebar-backdrop.png -set option:modulate:colorspace hsl -modulate $convertedLb,$convertedSb,$convertedHb custom-themes/$ThemeName/gtk-3.0/assets/sidebar-backdrop.png
+   
+    if [[ $traychoice == y ]]; then            
+     cp RedmondXP/gtk-3.0/assets/tray.png custom-themes/$ThemeName/gtk-3.0/assets/tray.png
+     cp RedmondXP/gtk-3.0/assets/tray_border.png custom-themes/$ThemeName/gtk-3.0/assets/tray_border.png
+     magick custom-themes/$ThemeName/gtk-3.0/assets/tray.png -set option:modulate:colorspace hsl -modulate $convertedL2,$convertedS2,$convertedH2 custom-themes/$ThemeName/gtk-3.0/assets/tray.png
+     magick custom-themes/$ThemeName/gtk-3.0/assets/tray_border.png -set option:modulate:colorspace hsl -modulate $convertedL2,$convertedS2,$convertedH2 custom-themes/$ThemeName/gtk-3.0/assets/tray_border.png   
                 
+    elif [[ $traychoice == n ]]; then
     magick custom-themes/$ThemeName/gtk-3.0/assets/tray.png -set option:modulate:colorspace hsl -modulate 90,100,100 custom-themes/$ThemeName/gtk-3.0/assets/tray.png
 
-
+    fi
 
     for f in custom-themes/$ThemeName/gtk-3.0/assets/*.xpm
         do
@@ -597,7 +711,6 @@ echo -e "${BLUE}Starting xfwm4${NC}"
     elif [[ ${darkprimary} == n ]]; then 
     echo ""
     fi
-
 echo -e "${BLUE}Fixing menu buttons${NC}"
     for f in custom-themes/$ThemeName/menu_buttons/background/*.png
         do
