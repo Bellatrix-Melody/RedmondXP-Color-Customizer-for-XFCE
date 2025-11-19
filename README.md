@@ -122,6 +122,10 @@ A dark background with greyscale minimize and maximize buttons
 
 <img width="2530" height="1308" alt="image" src="https://github.com/user-attachments/assets/10b6bc53-1531-4d4c-ba15-f9faeefd3cd9" />
 
+A dark background with a secondary color system tray
+
+<img width="2530" height="1309" alt="image" src="https://github.com/user-attachments/assets/4814c787-116d-4f15-b72a-7646f3878a09" />
+
 # **How it works**
 
 This will get a bit technical, so bear with me. 
