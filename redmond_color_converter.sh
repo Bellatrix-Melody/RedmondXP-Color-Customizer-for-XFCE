@@ -315,59 +315,91 @@ ${RED}Note: the name is case sensitive${NC}"
     export COLORTERM=truecolor
     export TERM=xterm-256color
 
-    python3 backgrounds/color_extractor.py backgrounds/$background -n 8 -s --output $ThemeName.txt
+    python3 backgrounds/color_extractor.py backgrounds/$background -n 16 -s --output $ThemeName.txt
     deactivate
     echo " 
 
 ########################################################################################
 
-"
-    echo -e "${GREEN}Choose the two colors you like the most from the above listing of colors${NC}"
-    echo ""
-    echo -e "${BLUE}Enter a value (1-8) for your primary color:${NC}"
-    read primarychoice
+echo -e "${GREEN}Choose the two colors you like the most from the above listing of colors${NC}"
+echo ""
+echo -e "${BLUE}Enter a value (1-16) for your primary color:${NC}"
+read primarychoice
+  
+  if [[ $primarychoice == 1 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '1p')
+  elif [[ $primarychoice == 2 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '2p')
+  elif [[ $primarychoice == 3 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '3p')
+  elif [[ $primarychoice == 4 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '4p')
+  elif [[ $primarychoice == 5 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '5p')
+  elif [[ $primarychoice == 6 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '6p')
+  elif [[ $primarychoice == 7 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '7p')
+  elif [[ $primarychoice == 8 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '8p')
+  elif [[ $primarychoice == 9 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '9p')
+  elif [[ $primarychoice == 10 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '10p')
+  elif [[ $primarychoice == 11 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '11p')
+  elif [[ $primarychoice == 12 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '12p')
+  elif [[ $primarychoice == 13 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '13p')
+  elif [[ $primarychoice == 14 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '14p')
+  elif [[ $primarychoice == 15 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '15p')
+  elif [[ $primarychoice == 16 ]]; then
+      primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '16p')
+  fi
 
-    if [[ $primarychoice == 1 ]]; then
-        primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '1p')
-    elif [[ $primarychoice == 2 ]]; then
-        primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '2p')
-    elif [[ $primarychoice == 3 ]]; then
-        primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '3p')
-    elif [[ $primarychoice == 4 ]]; then
-        primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '4p')
-    elif [[ $primarychoice == 5 ]]; then
-        primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '5p')
-    elif [[ $primarychoice == 6 ]]; then
-        primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '6p')
-    elif [[ $primarychoice == 7 ]]; then
-        primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '7p')
-    elif [[ $primarychoice == 8 ]]; then
-        primary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '8p')
-    fi    
-    echo ""
-    echo " 
-########################################################################################
-"
-    echo -e "${BLUE}Enter a value (1-8) for your secondary color:${NC}"
-    read secondarychoice
+echo ""
+echo "########################################################################################"
+echo ""
+echo -e "${BLUE}Enter a value (1-16) for your secondary color:${NC}"
+read secondarychoice
+  
+  if [[ $secondarychoice == 1 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '1p')
+  elif [[ $secondarychoice == 2 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '2p')
+  elif [[ $secondarychoice == 3 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '3p')
+  elif [[ $secondarychoice == 4 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '4p')
+  elif [[ $secondarychoice == 5 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '5p')
+  elif [[ $secondarychoice == 6 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '6p')
+  elif [[ $secondarychoice == 7 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '7p')
+  elif [[ $secondarychoice == 8 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '8p')
+  elif [[ $secondarychoice == 9 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '9p')
+  elif [[ $secondarychoice == 10 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '10p')
+  elif [[ $secondarychoice == 11 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '11p')
+  elif [[ $secondarychoice == 12 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '12p')
+  elif [[ $secondarychoice == 13 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '13p')
+  elif [[ $secondarychoice == 14 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '14p')
+  elif [[ $secondarychoice == 15 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '15p')
+  elif [[ $secondarychoice == 16 ]]; then
+      secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '16p')
+  fi
 
-     if [[ $secondarychoice == 1 ]]; then
-            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '1p')
-        elif [[ $secondarychoice == 2 ]]; then
-            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '2p')
-        elif [[ $secondarychoice == 3 ]]; then
-            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '3p')
-        elif [[ $secondarychoice == 4 ]]; then
-            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '4p')
-        elif [[ $secondarychoice == 5 ]]; then
-            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '5p')
-        elif [[ $secondarychoice == 6 ]]; then
-            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '6p')
-        elif [[ $secondarychoice == 7 ]]; then
-            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '7p')
-        elif [[ $secondarychoice == 8 ]]; then
-            secondary=$(grep -oP 'HEX: #\K[0-9A-Fa-f]+' "$ThemeName.txt" | sed -n '8p')    
-    fi
   echo ""
   echo -e "${GREEN}Would you like your tray(i.e where your clock typically goes) to be based off your secondary color? (asking to save on possible conversion time later)${NC}"
   echo "Enter your choice (y/n)"
