@@ -1,9 +1,9 @@
 #!/bin/bash
 
-GREEN='\033[0;32m'
+GREEN='\e[1;36;0;32m'
 NC='\033[0m'
 PURPLE='\033[0;35m'
-BLUE='\033[0;34m'
+BLUE='\e[1;36;0;34m'
 RED='\033[0;31m'
 # This array is a hue wheel based off msblue.png instead of red and converted to a 0-200 scale so that it can be input into image magick credit. The formula to do this was pulled from https://github.com/r0d3r1ck0rd0n3z/ImageMagick-Modulate-Calculator/blob/master/script.js I just made it into an array, so thanks r0d3r1ck0rd0n3z!
 #How I found the base HSL of msblue.png was using the following command on the base RedmondXP taskbar.png (in gtk-3.0/assets)"magick taskbar.png -scale 1x1! -format "%[hex:u.p]\n" info:" this gave me a hex code, so I ran it through the converter below to get the base HSL value
@@ -402,7 +402,7 @@ read secondarychoice
 
   echo ""
   echo -e "${GREEN}Would you like your tray(i.e where your clock typically goes) to be based off your secondary color? (asking to save on possible conversion time later)${NC}"
-  echo "Enter your choice (y/n)"
+  echo -e "${BLUE}Enter your choice (y/n)${NC}"
   read traychoice
 elif [[ ${automation_choice} -eq 2 ]]; then
     echo " 
