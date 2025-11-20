@@ -120,8 +120,7 @@ trash.png
 
 **A vibrant primary color with greyscale minimize and maximize buttons and a secondary color system tray**
 
-<img width="2530" height="1341" alt="image" src="https://github.com/user-attachments/assets/70968bf9-d083-4f2e-9d2c-89050fd47ebf" />
-
+<img width="2530" height="1341" alt="image" src="https://github.com/user-attachments/assets/b30dac31-7a1c-4e90-9762-3d478950488d" />
 
 **A dark primary color with greyscale minimize and maximize buttons and a secondary color system tray**
 
